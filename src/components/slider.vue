@@ -1,8 +1,6 @@
 <template>
   <div class="right slider">
-    <img class="right-logo"
-         src="../assets/userLogo.jpeg"
-         alt="">
+    <img class="right-logo" src="../assets/userLogo.jpeg" alt="" />
     <div class="title">夜尽天明</div>
     <div class="right-content">
       <!-- <div class="item">
@@ -20,27 +18,33 @@
     </div>
     <div class="tags">
       <div class="title">标签云</div>
-      <router-link v-for="item in list"
-                   class="item"
-                   :key="item._id"
-                   :to="`/articles?tag_id=${item._id}&tag_name=${item.name}&category_id=`">
-        <span :key="item._id">{{item.name}}</span>
+      <router-link
+        v-for="item in list"
+        class="item"
+        :key="item._id"
+        :to="`/articles?tag_id=${item._id}&tag_name=${item.name}&category_id=`"
+      >
+        <span :key="item._id">{{ item.name }}</span>
       </router-link>
     </div>
     <div class="introduce">
       <div class="title">技术以内的 BB</div>
       <div class="content">
-        <img style="width:100%;"
-             src="../assets/BiaoChenXuYing.png"
-             alt="全栈修炼" />
+        <img
+          style="width:100%;"
+          src="../assets/BiaoChenXuYing.png"
+          alt="全栈修炼"
+        />
       </div>
     </div>
     <div class="introduce">
       <div class="title">技术以外的 BB</div>
       <div class="content">
-        <img style="width:100%;"
-             src="../assets/YingHeZaHuoPu.png"
-             alt="硬核杂货铺" />
+        <img
+          style="width:100%;"
+          src="../assets/YingHeZaHuoPu.png"
+          alt="硬核杂货铺"
+        />
       </div>
     </div>
   </div>

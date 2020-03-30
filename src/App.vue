@@ -1,13 +1,10 @@
-<template>
-  <div id="app" class="container">
-    <Nav v-if="isShowNav" />
-    <div class=" layout">
-      <router-view />
-      <Slider v-if="isShowSlider"></Slider>
-    </div>
-    <ArrowUp></ArrowUp>
-    <Footer v-show="isShowNav"></Footer>
-  </div>
+<template lang="pug">
+    #app.container
+        Nav(v-if="isShowNav") 
+        .layout
+            router-view
+        ArrowUp
+        Footer(v-show="isShowNav")
 </template>
 <script lang="ts">
 import { Vue, Watch } from "vue-property-decorator";
@@ -38,7 +35,6 @@ if (isMobileOrPc()) {
 })
 export default class App extends Vue {
   private isShowNav: boolean = false;
-  private isShowSlider: boolean = false;
   mounted(): void {
     this.routeChange(this.$route, this.$route);
   }
@@ -51,20 +47,6 @@ export default class App extends Vue {
     } else {
       this.isShowNav = true;
       referrer.setAttribute("content", "never");
-    }
-    if (
-      val.path === "/articles" ||
-      val.path === "/archive" ||
-      val.path === "/project" ||
-      val.path === "/timeline" ||
-      val.path === "/message"
-    ) {
-      this.isShowSlider = true;
-    } else {
-      this.isShowSlider = false;
-    }
-    if (isMobileOrPc()) {
-      this.isShowSlider = false;
     }
   }
 }
