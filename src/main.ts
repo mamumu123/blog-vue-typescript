@@ -6,27 +6,28 @@ import store from "./store/index";
 import service from "./utils/https";
 import urls from "./utils/urls";
 import {
-  Dialog,
-  Form,
-  FormItem,
-  Input,
-  Button,
-  Message,
-  Menu,
-  MenuItem,
-  Row,
-  Col,
-  Dropdown,
-  DropdownMenu,
-  DropdownItem,
-  Loading,
-  Timeline,
-  TimelineItem,
-  Card,
-  Tag
+    Dialog,
+    Form,
+    FormItem,
+    Input,
+    Button,
+    Message,
+    Menu,
+    MenuItem,
+    Row,
+    Col,
+    Dropdown,
+    DropdownMenu,
+    DropdownItem,
+    Loading,
+    Timeline,
+    TimelineItem,
+    Card,
+    Tag
 } from "element-ui";
 import CollapseTransition from "element-ui/lib/transitions/collapse-transition";
 import mixin from "./mixins";
+import 'normalize.css'
 
 Vue.mixin(mixin);
 
@@ -59,13 +60,13 @@ Vue.prototype.$urls = urls; // 其他页面在使用 URLS 的时候直接  this.
 
 // https://www.npmjs.com/package/vue-class-component#adding-custom-hooks
 Component.registerHooks([
-  "beforeRouteEnter",
-  "beforeRouteLeave",
-  "beforeRouteUpdate"
+    "beforeRouteEnter",
+    "beforeRouteLeave",
+    "beforeRouteUpdate"
 ]);
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App)
 }).$mount("#app");
