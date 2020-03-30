@@ -7,10 +7,18 @@ module.exports = {
   // 输出文件目录
   outputDir: "dist",
   // eslint-loader 是否在保存的时候检查
-  lintOnSave: false,
+  // lintOnSave: false,
   // webpack配置
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
-  chainWebpack: () => {},
+  chainWebpack: config => {
+    config.module
+      .rule("pug")
+      .test(/\.pug$/)
+      .use("pug-html-loader")
+      .loader("pug-html-loader")
+      .end();
+  },
+
   configureWebpack: config => {
     if (process.env.NODE_ENV === "production") {
       // 为生产环境修改配置...
@@ -62,14 +70,14 @@ module.exports = {
   devServer: {
     open: process.platform === "darwin",
     host: "localhost",
-    port: 3001, //8080,
+    port: 3002, //8080,
     https: false,
     hotOnly: false,
     proxy: {
       // 设置代理
       // proxy all requests starting with /api to jsonplaceholder
       "/api": {
-        target: "http://localhost:3000/",
+        target: "http://localhost:3003/",
         changeOrigin: true,
         ws: true,
         pathRewrite: {
