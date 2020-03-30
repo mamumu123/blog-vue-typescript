@@ -28,12 +28,12 @@ export default new Router({
             // which is lazy-loaded when the route is visited.
             component: () =>
                 import(/* webpackChunkName: "login" */ "./views/login.vue")
-        },
-        {
-            path: "*",
-            redirect: {
-                name: "home"
-            }
         }
+        // {
+        //     path: "*",
+        //     redirect: {
+        //         name: "home"
+        //     }
+        // }
     ]
 });

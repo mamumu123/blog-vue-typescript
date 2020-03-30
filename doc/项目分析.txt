@@ -1,0 +1,19 @@
+一、项目目录
+src/
+    assets/
+    component/
+    less/
+    mixins/
+    store/
+    types/
+    utils/
+    views/
+    App.vue
+    main.ts     // 项目入口，加载路由
+        registerHooks
+        element-ui register
+    router.ts   // 路由，页面跳转，url
+        /login  //登陆页
+        /home   // 首页
+        /articles/  // 主页
+        
