@@ -54,18 +54,16 @@
           </el-col>
           <el-col v-else :span="4">
             <div class="nav-right">
-              <el-button
-                size="small"
-                type="primary"
-                @click="handleClick('login')"
-                >登录</el-button
-              >
+              <router-link to="/login">
+                <el-button size="small" type="primary">登录</el-button>
+              </router-link>
+              <!-- 
               <el-button
                 size="small"
                 type="danger"
                 @click="handleClick('register')"
                 >注册</el-button
-              >
+              > -->
             </div>
           </el-col>
         </el-row>
