@@ -19,13 +19,14 @@ export interface Params {
 
 // 登录
 export interface LoginParams {
-    name: string;
+    username: string;
     password: string;
 }
 export interface UserInfo {
     _id: string;
     name: string;
     avatar: string | any;
+    token?: string
 }
 export interface RegAndLogParams {
     email: string;
