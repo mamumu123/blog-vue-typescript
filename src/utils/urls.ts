@@ -11,7 +11,7 @@ export const urls: object = {
 
     getArticleList: "/blog/posts",
     likeArticle: "likeArticle",
-    getArticleDetail: "getArticleDetail",
+    getArticleDetail: "/blog/post",
 
     addMessage: "addMessage",
     getMessageList: "getMessageList",

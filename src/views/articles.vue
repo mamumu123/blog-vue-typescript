@@ -7,7 +7,7 @@
                         v-for="article in articlesList"
                         :key="article._id"
                     )
-                        router-link(:to="{ name: 'articleDetail', params: { id: article._id }}")
+                        router-link(:to="{ name: 'articleDetail', query: { id: article._id }}")
                             .content
                                 h4.title {{ article.title }}
                                 p.abstract {{ article.description }}
@@ -129,7 +129,6 @@ export default class Articles extends Vue {
     // )
     this.isLoading = false;
     this.articlesList = [...this.articlesList, ...data];
-    console.log("????", this.articlesList);
 
     // this.total = data.count;
     // this.params.pageNum++;
