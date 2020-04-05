@@ -27,7 +27,9 @@ export const urls: object = {
     getTimeAxisDetail: "getTimeAxisDetail",
 
     getProjectList: "getProjectList",
-    getProjectDetail: "getProjectDetail"
+    getProjectDetail: "getProjectDetail",
+
+    postArticle: '/blog/post'
 };
 
 export default urls;

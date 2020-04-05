@@ -215,3 +215,9 @@ export interface TagsData {
     count: number;
     list: TagList | any;
 }
+
+export interface IArticle {
+    title: string
+    description: string
+    body: string
+}

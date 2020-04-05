@@ -25,6 +25,11 @@ if (process.env.NODE_ENV === "development") {
 // request 拦截器 axios 的一些配置
 service.interceptors.request.use(
     (config: AxiosRequestConfig) => {
+        const token = localStorage.getItem("authorization");
+
+        if (token) {
+            config.headers['Authorization'] = token;
+        }
         return config;
     },
     (error: any) => {

@@ -50,7 +50,7 @@ export default class Login extends Vue {
       this.params
     );
 
-    localStorage.setItem("authorization", data.token!);
+    localStorage.setItem("authorization", `Bearer ${data.token!}`);
     Message.success("登录成功");
     this.$router.push({ path: "/admin" });
   }
