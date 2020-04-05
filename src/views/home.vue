@@ -1,10 +1,8 @@
 <template lang="pug">
     .home 这里可以整一堆花活
         h1 我想到的有 吃东西的小老鼠、龙族的话（好玩的东西，暴露出来）
-        h2 
-            router-link.link(to="/") home
-        //- h2
-        router-link.link(to="/article") article
+        router-link.link(to="/article")
+            img(src='../assets/logo.png')
 
 </template>
 

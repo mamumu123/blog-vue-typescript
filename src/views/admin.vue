@@ -30,7 +30,7 @@ import { Dialog, Form, FormItem, Input, Button, Message } from "element-ui";
 })
 export default class Home extends Vue {
   private formLabelWidth: string = "60px";
-  private params: IArticle = {
+  private params: Partial<IArticle> = {
     title: "",
     description: "",
     body: ""

@@ -220,4 +220,5 @@ export interface IArticle {
     title: string
     description: string
     body: string
+    _id: string
 }

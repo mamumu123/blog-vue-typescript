@@ -1,41 +1,18 @@
-<template>
-  <div class="left clearfix">
-    <h3 v-if="params.tag_id" class="left-title">{{ tag_name }} 相关的文章：</h3>
-    <ul class="articles-list" id="list">
-      <transition-group name="el-fade-in">
-        <li
-          @click="articleDetail(article._id)"
-          v-for="article in articlesList"
-          :key="article._id"
-          class="item"
-        >
-          <a :href="href + article._id" target="_blank">
-            <img
-              class="wrap-img img-blur-done"
-              :data-src="article.img_url"
-              data-has-lazy-src="false"
-              src="../assets/bg.jpg"
-              alt="文章封面"
-            />
-            <div class="content">
-              <h4 class="title">{{ article.title }}</h4>
-              <p class="abstract">{{ article.desc }}</p>
-              <div class="meta">
-                <span>查看 {{ article.meta.views }}</span>
-                <span>评论 {{ article.meta.comments }}</span>
-                <span>赞 {{ article.meta.likes }}</span>
-                <span v-if="article.create_time" class="time">
-                  {{ formatTime(article.create_time) }}
-                </span>
-              </div>
-            </div>
-          </a>
-        </li>
-      </transition-group>
-    </ul>
-    <LoadingCustom v-if="isLoading"></LoadingCustom>
-    <LoadEnd v-if="isLoadEnd"></LoadEnd>
-  </div>
+<template lang="pug">
+    .clearfix.left 
+        ul.articles-list(id='list')
+            transition-group(name="el-fade-in")
+                
+                    li.item(@click="articleDetail(article._id)"
+                        v-for="article in articlesList"
+                        :key="article._id"
+                    )
+                        router-link(:to="{ name: 'articleDetail', params: { id: article._id }}")
+                            .content
+                                h4.title {{ article.title }}
+                                p.abstract {{ article.description }}
+        LoadingCustom(v-if="isLoading")
+        LoadEnd(v-if="isLoadEnd")
 </template>
 
 <script lang="ts">
@@ -52,6 +29,7 @@ import {
 import LoadEnd from "@/components/loadEnd.vue";
 import LoadingCustom from "@/components/loading.vue";
 import { ArticlesParams, ArticlesData } from "@/types/index";
+import { IArticle } from "../types/index";
 
 // 获取可视区域的高度
 const viewHeight = window.innerHeight || document.documentElement.clientHeight;
@@ -103,32 +81,32 @@ export default class Articles extends Vue {
   };
   private href: string =
     process.env.NODE_ENV === "development"
-      ? "http://localhost:3001/articleDetail?article_id="
+      ? "/api/blog/post/"
       : "https://biaochenxuying.cn/articleDetail?article_id=";
 
   // lifecycle hook
   mounted(): void {
     this.handleSearch();
-    window.onscroll = () => {
-      if (getScrollTop() + getWindowHeight() > getDocumentHeight() - 150) {
-        // 如果不是已经没有数据了，都可以继续滚动加载
-        if (this.isLoadEnd === false && this.isLoading === false) {
-          this.handleSearch();
-        }
-      }
-    };
-    document.addEventListener("scroll", lazyload);
+    // window.onscroll = () => {
+    //   if (getScrollTop() + getWindowHeight() > getDocumentHeight() - 150) {
+    //     // 如果不是已经没有数据了，都可以继续滚动加载
+    //     if (this.isLoadEnd === false && this.isLoading === false) {
+    //       this.handleSearch();
+    //     }
+    //   }
+    // };
+    // document.addEventListener("scroll", lazyload);
   }
 
-  @Watch("$route")
-  routeChange(val: Route, oldVal: Route): void {
-    this.tag_name = decodeURI(getQueryStringByName("tag_name"));
-    this.params.tag_id = getQueryStringByName("tag_id");
-    this.params.category_id = getQueryStringByName("category_id");
-    this.articlesList = [];
-    this.params.pageNum = 1;
-    this.handleSearch();
-  }
+  //   @Watch("$route")
+  //   routeChange(val: Route, oldVal: Route): void {
+  //     this.tag_name = decodeURI(getQueryStringByName("tag_name"));
+  //     this.params.tag_id = getQueryStringByName("tag_id");
+  //     this.params.category_id = getQueryStringByName("category_id");
+  //     this.articlesList = [];
+  //     this.params.pageNum = 1;
+  //     this.handleSearch();
+  //   }
 
   // method
   private articleDetail(id: string): void {
@@ -144,24 +122,25 @@ export default class Articles extends Vue {
 
   private async handleSearch(): Promise<void> {
     this.isLoading = true;
-    const data: ArticlesData = await this.$https.get(
-      this.$urls.getArticleList,
-      {
-        params: this.params
-      }
-    );
+    const data: IArticle[] = await this.$https.get(this.$urls.getArticleList);
+    //   {
+    //     params: this.params
+    //   }
+    // )
     this.isLoading = false;
-    this.articlesList = [...this.articlesList, ...data.list];
-    this.total = data.count;
-    this.params.pageNum++;
-    this.$nextTick(() => {
-      lazyload();
-    });
-    if (data.list.length === 0 || this.total === this.articlesList.length) {
-      this.isLoadEnd = true;
-      document.removeEventListener("scroll", () => {});
-      window.onscroll = null;
-    }
+    this.articlesList = [...this.articlesList, ...data];
+    console.log("????", this.articlesList);
+
+    // this.total = data.count;
+    // this.params.pageNum++;
+    // this.$nextTick(() => {
+    //   lazyload();
+    // });
+    // if (data.list.length === 0 || this.total === this.articlesList.length) {
+    //   this.isLoadEnd = true;
+    //   document.removeEventListener("scroll", () => {});
+    //   window.onscroll = null;
+    // }
   }
 }
 </script>
