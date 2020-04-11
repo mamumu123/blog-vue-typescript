@@ -17,10 +17,15 @@ if (process.env.NODE_ENV === "development") {
 } else {
     // 生产环境下
     service = axios.create({
-        baseURL: "/api",
+        baseURL: "http://localhost:7000",
         timeout: 50000
     });
 }
+
+service.defaults.headers.post["Content-Type"] = "application/json;charset=UTF-8";
+service.defaults.headers["X-Requested-With"] = "XMLHttpRequest";
+service.defaults.headers["Cache-Control"] = "no-cache";
+service.defaults.headers["pragma"] = "no-cache";
 
 // request 拦截器 axios 的一些配置
 service.interceptors.request.use(
