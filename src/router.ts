@@ -8,50 +8,44 @@ export default new Router({
     routes: [
         {
             path: "/",
+            name: "entry",
+            component: () => import(/* webpackChunkName: "site" */ "./layouts/EntryLayout.vue")
+        },
+        {
+            path: "/home",
             name: "home",
-            component: () => import(/* webpackChunkName: "home" */ "./views/home.vue")
-        },
-        {
-            path: "/articles",
-            name: "articles",
-            // route level code-splitting
-            // this generates a separate chunk (articles.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () =>
-                import(/* webpackChunkName: "articles" */ "./views/articles.vue")
-        },
-        {
-            path: "/articleDetail",
-            name: "articleDetail",
-            // route level code-splitting
-            // this generates a separate chunk (articles.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () =>
-                import(/* webpackChunkName: "articles" */ "./views/articleDetail.vue")
+            component: () => import(/* webpackChunkName: "site" */ "./layouts/HomeLayout.vue"),
+            children: [{
+                path: "articleDetail",
+                name: "articleDetail",
+                component: () =>
+                    import(/* webpackChunkName: "site" */ "./views/ArticleDetail.vue")
+            },
+            {
+                path: "/",
+                name: "articles",
+                component: () =>
+                    import(/* webpackChunkName: "site" */ "./views/Articles.vue")
+            }
+            ]
         },
         {
             path: "/login",
             name: "login",
-            // route level code-splitting
-            // this generates a separate chunk (articles.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
             component: () =>
-                import(/* webpackChunkName: "login" */ "./views/login.vue")
+                import(/* webpackChunkName: "admin" */ "./layouts/LoginLayout.vue")
         },
         {
             path: "/admin",
             name: "admin",
-            // route level code-splitting
-            // this generates a separate chunk (articles.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
             component: () =>
-                import(/* webpackChunkName: "login" */ "./views/admin.vue")
+                import(/* webpackChunkName: "admin" */ "./layouts/AdminLayout.vue"),
+            children: [{
+                path: "/",
+                name: "adminBlog",
+                component: () =>
+                    import(/* webpackChunkName: "site" */ "./views/AdminBlog.vue")
+            }]
         }
-        // {
-        //     path: "*",
-        //     redirect: {
-        //         name: "home"
-        //     }
-        // }
     ]
 });

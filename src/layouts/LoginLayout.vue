@@ -23,7 +23,7 @@ import { LoginParams, UserInfo } from "@/types/index";
     Button
   }
 })
-export default class Login extends Vue {
+export default class LoginLayout extends Vue {
   // initial data
   //   private btnLoading: boolean = false;
   //   private loading: boolean = false;
@@ -56,3 +56,13 @@ export default class Login extends Vue {
   }
 }
 </script>
+
+<style lang="less" scoped>
+.login {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

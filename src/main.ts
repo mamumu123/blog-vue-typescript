@@ -23,7 +23,11 @@ import {
     Timeline,
     TimelineItem,
     Card,
-    Tag
+    Tag,
+    Header,
+    Main,
+    Footer,
+    Container
 } from "element-ui";
 import CollapseTransition from "element-ui/lib/transitions/collapse-transition";
 import mixin from "./mixins";
@@ -50,6 +54,11 @@ Vue.component(Timeline.name, Timeline);
 Vue.component(TimelineItem.name, TimelineItem);
 Vue.component(Card.name, Card);
 Vue.component(Tag.name, Tag);
+Vue.component(Footer.name, Footer);
+Vue.component(Main.name, Main);
+Vue.component(Header.name, Header);
+Vue.component(Container.name, Container);
+
 Vue.use(Loading.directive);
 Vue.prototype.$message = Message;
 Vue.prototype.$loading = Loading.service;

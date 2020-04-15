@@ -7,8 +7,6 @@
                 Input(v-model="params.description" autocomplete="off")
             FormItem(label="内容" placeholder="body" :label-width="formLabelWidth")
                 Input(v-model="params.body" autocomplete="off" type='area')
-            
-            
             Button(type="primary" @click="handleOk") 确 定
 
 </template>
@@ -28,7 +26,7 @@ import { Dialog, Form, FormItem, Input, Button, Message } from "element-ui";
     Button
   }
 })
-export default class Home extends Vue {
+export default class AdminBlog extends Vue {
   private formLabelWidth: string = "60px";
   private params: Partial<IArticle> = {
     title: "",

@@ -6,18 +6,22 @@
 
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator"
+import { Component, Prop, Vue } from "vue-property-decorator";
 import {
   timestampToTime,
   getQueryStringByName,
   isMobileOrPc
-} from "@/utils/utils"
-import markdown from "@/utils/markdown"
-import LoadingCustom from "@/components/loading.vue"
-import CommentList from "@/components/commentList.vue"
-import { ArticleDetailIF, LikeParams, ArticleDetailParams } from "@/types/index"
+} from "@/utils/utils";
+import markdown from "@/utils/markdown";
+import LoadingCustom from "@/components/loading.vue";
+import CommentList from "@/components/commentList.vue";
+import {
+  ArticleDetailIF,
+  LikeParams,
+  ArticleDetailParams
+} from "@/types/index";
 
-declare let document: Document | any
+declare let document: Document | any;
 
 @Component({
   components: {
@@ -28,13 +32,13 @@ declare let document: Document | any
 export default class ArticleDetail extends Vue {
   //   private btnLoading: boolean = false;
   //   private isLoadEnd: boolean = false;
-  private isLoading: boolean = false
+  private isLoading: boolean = false;
   //   private isMobileOrPc: boolean = isMobileOrPc();
   private params: ArticleDetailParams = {
     id: "",
     type: 1 //文章类型 => 1: 普通文章，2: 简历，3: 管理员介绍
-  }
-  private content: string = ""
+  };
+  private content: string = "";
   private articleDetail: ArticleDetailIF = {
     toc: "",
     _id: "",
@@ -55,13 +59,13 @@ export default class ArticleDetail extends Vue {
     tags: [],
     title: "",
     update_time: ""
-  }
+  };
   //   private cacheTime: number = 0; // 缓存时间
   //   private times: number = 0; // 评论次数
   //   private likeTimes: number = 0; // 点赞次数
   mounted() {
-    this.params.id = this.$route.query.id
-    this.handleSearch()
+    this.params.id = this.$route.query.id;
+    this.handleSearch();
   }
   //     this.params.id = this.$route.query.article_id;
   //     // this.params.id = "5c8cfe5d26bb39b22d3a7aec";
@@ -164,12 +168,12 @@ export default class ArticleDetail extends Vue {
   //   next() // needs to be called to confirm the navigation
   // }
   async handleSearch(): Promise<void> {
-    this.isLoading = true
+    this.isLoading = true;
     const data: any = await this.$https.get(
       `${this.$urls.getArticleDetail}/${this.params.id}`
-    )
-    this.isLoading = false
-    this.articleDetail = data
+    );
+    this.isLoading = false;
+    this.articleDetail = data;
     // console.log(this.articleDetail);
     //     const article = markdown.marked(data.content);
     //     article.then((res: any) => {
