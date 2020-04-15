@@ -15,7 +15,6 @@
     "highlight.js": "^9.15.6",
     "marked": "^0.6.1",
     "normalize.css": "^8.0.1",
-    "pug-plain-loader": "^1.0.0",
     "vue": "^2.6.6",
     "vue-class-component": "^6.0.0",
     "vue-property-decorator": "^7.0.0",
@@ -40,7 +39,9 @@
     "eslint-plugin-vue": "^5.0.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
+    "pug": "^2.0.4",
     "pug-html-loader": "^1.1.5",
+    "pug-plain-loader": "^1.0.0",
     "typescript": "^3.2.1",
     "vue-template-compiler": "^2.5.21"
   }
