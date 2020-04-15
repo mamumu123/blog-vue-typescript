@@ -1,6 +1,6 @@
 <template lang="pug">
-    .home 这里可以整一堆花活
-        h1 我想到的有 吃东西的小老鼠、龙族的话（好玩的东西，暴露出来）
+    .home 
+        h1 正在搭建中
         router-link.link(to="/home")
             img(src='../assets/logo.png')
 
@@ -18,6 +18,9 @@ export default class EntryLayout extends Vue {}
 .home {
   height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .link {
   display: inline-block;

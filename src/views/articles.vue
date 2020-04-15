@@ -79,11 +79,6 @@ export default class Articles extends Vue {
     pageNum: 1,
     pageSize: 10
   };
-  private href: string =
-    process.env.NODE_ENV === "development"
-      ? "/api/blog/post/"
-      : "https://biaochenxuying.cn/articleDetail?article_id=";
-
   // lifecycle hook
   mounted(): void {
     this.handleSearch();
