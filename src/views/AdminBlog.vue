@@ -1,12 +1,10 @@
 <template lang="pug">
-    .admin 
-        Form
+        Form.admin 
             FormItem(label="标题" placeholder="title" :label-width="formLabelWidth")
                 Input(v-model="params.title" autocomplete="off")
             FormItem(label="描述" placeholder="description" :label-width="formLabelWidth")
                 Input(v-model="params.description" autocomplete="off")
-            FormItem(label="内容" placeholder="body" :label-width="formLabelWidth")
-                Input(v-model="params.body" autocomplete="off" type='area')
+            mavon-editor(v-model="params.body")
             Button(type="primary" @click="handleOk") 确 定
 
 </template>
@@ -53,7 +51,7 @@ export default class AdminBlog extends Vue {
 </script>
 
 <style lang="less" scoped>
-.home {
+.admin {
   height: 100%;
   width: 100%;
 }

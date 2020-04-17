@@ -1,9 +1,10 @@
 <template lang="pug">
     el-container.container
         el-header  header
-        el-aside(width="200px") side
-        el-main 
-            router-view    
+        el-container
+            el-aside(width="100px") side
+            el-main 
+                router-view    
 </template>
 
 <script lang="ts">
@@ -51,15 +52,5 @@ export default class AdminLayout extends Vue {
 .container {
   height: 100%;
   width: 100%;
-  .el-main {
-    background-color: #e9eef3;
-    color: #333;
-  }
-  .el-aside {
-    background-color: #d3dce6;
-    color: #333;
-    text-align: center;
-    line-height: 200px;
-  }
 }
 </style>

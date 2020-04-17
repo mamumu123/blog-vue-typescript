@@ -27,12 +27,17 @@ import {
     Header,
     Main,
     Footer,
-    Container
+    Container,
+    Aside
 } from "element-ui";
 import CollapseTransition from "element-ui/lib/transitions/collapse-transition";
 import mixin from "./mixins";
 import 'normalize.css'
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 
+// use
+Vue.use(mavonEditor)
 Vue.mixin(mixin);
 
 // 按需引用 element 组件
@@ -58,6 +63,7 @@ Vue.component(Footer.name, Footer);
 Vue.component(Main.name, Main);
 Vue.component(Header.name, Header);
 Vue.component(Container.name, Container);
+Vue.component(Aside.name, Aside);
 
 Vue.use(Loading.directive);
 Vue.prototype.$message = Message;
