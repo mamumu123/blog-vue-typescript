@@ -3,7 +3,7 @@ const sourceMap = process.env.NODE_ENV === "development";
 
 module.exports = {
   // 基本路径
-  publicPath: "./",
+  publicPath: "/",
   // 输出文件目录
   outputDir: "dist",
   // eslint-loader 是否在保存的时候检查
@@ -31,7 +31,7 @@ module.exports = {
     Object.assign(config, {
       // 开发生产共同配置
       resolve: {
-        extensions: [".js", ".vue", ".json", ".ts", ".tsx"],
+        extensions: [".vue", ".json", ".ts", ".tsx", ".js"],
         alias: {
           vue$: "vue/dist/vue.js",
           "@": path.resolve(__dirname, "./src"),
