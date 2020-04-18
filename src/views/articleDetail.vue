@@ -2,8 +2,13 @@
     .detail 
         h4.title {{ articleDetail.title }}
         p.abstract {{ articleDetail.description }}
-        //- p.abstract {{ articleDetail.description }}
-
+        mavon-editor(v-model="articleDetail.body",
+            defaultOpen="preview",
+            editable=false,
+            :toolbarsFlag="false" ,
+            :subfield="false",
+            :boxShadow="false"       
+            )
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
