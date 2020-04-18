@@ -25,7 +25,7 @@ export default new Router({
                 path: "/",
                 name: "articles",
                 component: () =>
-                    import(/* webpackChunkName: "site" */ "./views/Articles.vue")
+                    import(/* webpackChunkName: "site" */ "./views/HomeArticles.vue")
             }
             ]
         },
