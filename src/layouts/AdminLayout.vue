@@ -1,6 +1,7 @@
 <template lang="pug">
     el-container.container
         el-header  header
+            el-button(@click="handleLogout"  type='primary') 登出
         el-container
             el-aside(width="100px") side
             el-main 
@@ -44,6 +45,11 @@ export default class AdminLayout extends Vue {
       this.$urls.postArticle,
       this.params
     );
+  }
+
+  handleLogout() {
+    localStorage.removeItem("authorization");
+    this.$router.push({ name: "login" });
   }
 }
 </script>
