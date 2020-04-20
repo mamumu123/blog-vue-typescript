@@ -9,18 +9,10 @@ export interface ResponseData {
 
 // 创建 axios 实例
 let service: AxiosInstance;
-if (process.env.NODE_ENV === "development") {
-    service = axios.create({
-        baseURL: "/api", // api 的 base_url
-        timeout: 50000 // 请求超时时间
-    });
-} else {
-    // 生产环境下
-    service = axios.create({
-        baseURL: "http://152.136.138.161:7000",
-        timeout: 50000
-    });
-}
+service = axios.create({
+    baseURL: process.env.NODE_ENV === "development" ? "/api" : "http://152.136.138.161:7000", // api 的 base_url
+    timeout: 50000 // 请求超时时间
+})
 
 service.defaults.headers.post["Content-Type"] = "application/json;charset=UTF-8";
 service.defaults.headers["X-Requested-With"] = "XMLHttpRequest";
@@ -31,7 +23,6 @@ service.defaults.headers["pragma"] = "no-cache";
 service.interceptors.request.use(
     (config: AxiosRequestConfig) => {
         const token = localStorage.getItem("authorization");
-
         if (token) {
             config.headers['Authorization'] = token;
         }
@@ -39,7 +30,7 @@ service.interceptors.request.use(
     },
     (error: any) => {
         // Do something with request error
-        console.error("error:", error); // for debug
+        console.error("request error:", error); // for debug
         Promise.reject(error);
     }
 );
@@ -67,7 +58,13 @@ service.interceptors.response.use(
             return Promise.reject(new Error(res.data.message || "Error"));
         }
     },
-    (error: any) => Promise.reject(error)
+    (error: any) => {
+        Message({
+            message: "网络错误!",
+            type: "error"
+        });
+        return Promise.reject(error)
+    }
 );
 
 export default service;
