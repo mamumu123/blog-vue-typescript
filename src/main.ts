@@ -36,7 +36,7 @@ import 'normalize.css'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 
-// use
+// use markdown
 Vue.use(mavonEditor)
 Vue.mixin(mixin);
 
@@ -70,6 +70,7 @@ Vue.prototype.$message = Message;
 Vue.prototype.$loading = Loading.service;
 
 Vue.config.productionTip = false;
+// FIXME: 其实不用声明这一点，有利有弊吧，就像一个全局变量一样
 Vue.prototype.$https = service; // 其他页面在使用 axios 的时候直接  this.$http 就可以了
 Vue.prototype.$urls = urls; // 其他页面在使用 URLS 的时候直接  this.$urls 就可以了
 

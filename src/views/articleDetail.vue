@@ -17,7 +17,6 @@ import {
   getQueryStringByName,
   isMobileOrPc
 } from "@/utils/utils";
-import markdown from "@/utils/markdown";
 import LoadingCustom from "@/components/loading.vue";
 import CommentList from "@/components/commentList.vue";
 import {
